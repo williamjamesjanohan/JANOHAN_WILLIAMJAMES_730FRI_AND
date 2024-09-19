@@ -5,12 +5,31 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <!-- Headline TextView -->
     <TextView
-        android:id="@+id/news_content"
+        android:id="@+id/headline_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="News content will appear here"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
-        android:padding="10dp" />
+        android:text="Headline"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:paddingBottom="10dp"
+        android:textColor="@android:color/black" />
+
+    <!-- Scrollable content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/news_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="News content will appear here"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:textColor="@android:color/black" />
+    </ScrollView>
+
 </LinearLayout>
