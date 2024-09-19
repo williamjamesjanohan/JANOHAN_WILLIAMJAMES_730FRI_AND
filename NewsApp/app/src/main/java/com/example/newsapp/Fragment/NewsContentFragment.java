@@ -17,12 +17,11 @@ public class NewsContentFragment extends Fragment {
     private String headline;
     private String content;
 
-    // Modify the newInstance method to accept both headline and content
     public static NewsContentFragment newInstance(String headline, String content) {
         NewsContentFragment fragment = new NewsContentFragment();
         Bundle args = new Bundle();
         args.putString(ARG_HEADLINE, headline);
-        args.putString(ARG_CONTENT, content);  // Pass the content as well
+        args.putString(ARG_CONTENT, content);
         fragment.setArguments(args);
         return fragment;
     }
@@ -32,7 +31,7 @@ public class NewsContentFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             headline = getArguments().getString(ARG_HEADLINE);
-            content = getArguments().getString(ARG_CONTENT);  // Retrieve the content
+            content = getArguments().getString(ARG_CONTENT);
         }
     }
 
@@ -41,18 +40,25 @@ public class NewsContentFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_news_content, container, false);
 
-        // Update the TextView with both headline and content
-        TextView newsContent = view.findViewById(R.id.news_content);
-        newsContent.setText("Headline: " + headline + "\n\nContent: " + content);  // Display headline and content
+        // Set the headline
+        TextView headlineTextView = view.findViewById(R.id.headline_text);
+        headlineTextView.setText(headline);
+
+        // Set the content
+        TextView newsContentTextView = view.findViewById(R.id.news_content);
+        newsContentTextView.setText(content);
 
         return view;
     }
 
-    // Update content in landscape mode
     public void updateNewsContent(String newHeadline, String newContent) {
         this.headline = newHeadline;
-        this.content = newContent;  // Update the content as well
-        TextView newsContent = getView().findViewById(R.id.news_content);
-        newsContent.setText("Headline: " + headline + "\n\nContent: " + content);
+        this.content = newContent;
+        if (getView() != null) {
+            TextView headlineTextView = getView().findViewById(R.id.headline_text);
+            TextView newsContentTextView = getView().findViewById(R.id.news_content);
+            headlineTextView.setText(newHeadline);
+            newsContentTextView.setText(newContent);
+        }
     }
 }
